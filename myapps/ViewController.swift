@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         label.textAlignment = .center
         label.textColor = .white
         //label.backgroundColor = .black
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -44,9 +45,6 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Author"
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        //label.contentMode = .scaleToFill
-        //label.lineBreakMode = .byWordWrapping
-        //label.baselineAdjustment = .alignBaselines
         label.numberOfLines = 0
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +130,7 @@ class ViewController: UIViewController {
             // Set Quote to center in Y anchor
             Quote.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             // Set Quote height to 200
-            //Quote.heightAnchor.constraint(equalToConstant: 200),
+            Quote.heightAnchor.constraint(greaterThanOrEqualToConstant: 200),
             // Set Quote padding left to 20
             Quote.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20),
             // Set Quote padding right to 20
