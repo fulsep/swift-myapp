@@ -16,20 +16,25 @@ struct _Quote{
 }
 
 extension UIColor{
-    convenience init(r:Int = 0,g:Int = 0,b:Int = 0,a:Int = 255){
-        self.init(red:CGFloat(r)/255,green:CGFloat(g)/255,blue:CGFloat(b)/255,alpha:CGFloat(a)/255)
+    convenience init(r: Int = 0,g: Int = 0,b: Int = 0,a: Int = 255){
+        self.init(
+            red: CGFloat(r)/255,
+            green: CGFloat(g)/255,
+            blue: CGFloat(b)/255,
+            alpha: CGFloat(a)/255
+        )
     }
 }
 
 class ViewController: UIViewController {
     
-    private let Quote:UILabel = {
+    private let Quote: UILabel = {
         let label = UILabel()
         label.text = "Hello World"
         label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         label.textAlignment = .center
         label.textColor = .white
-//        label.backgroundColor = .black
+        //label.backgroundColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -39,10 +44,10 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Author"
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-//        label.contentMode = .scaleToFill
-//        label.lineBreakMode = .byWordWrapping
-//        label.baselineAdjustment = .alignBaselines
-//        label.numberOfLines = 0
+        //label.contentMode = .scaleToFill
+        //label.lineBreakMode = .byWordWrapping
+        //label.baselineAdjustment = .alignBaselines
+        label.numberOfLines = 0
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -122,25 +127,26 @@ class ViewController: UIViewController {
         ChangeQuote.addTarget(self, action: #selector(self.didClick(_sender:)), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            // Set HelloLabel to center in X anchor
-            Quote.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            // Set HelloLabel to center in Y anchor
-            Quote.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            // Set HelloLabel height to 200
-//            HelloLabel.heightAnchor.constraint(equalToConstant: 200),
-            // Set HelloLabel padding left to 20
-            NSLayoutConstraint(item: Quote, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 20),
-            // Set HelloLabel padding right to 20
-            NSLayoutConstraint(item: Quote, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: -20),
+            // Set Quote to center in X anchor
+            Quote.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            // Set Quote to center in Y anchor
+            Quote.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            // Set Quote height to 200
+            //Quote.heightAnchor.constraint(equalToConstant: 200),
+            // Set Quote padding left to 20
+            Quote.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20),
+            // Set Quote padding right to 20
+            Quote.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20),
             // Set Author constraint to HelloLabel bottom by 20
-            NSLayoutConstraint(item: Author, attribute: .top, relatedBy: .equal, toItem: Quote, attribute: .bottom, multiplier: 1, constant: 20),
+            Author.topAnchor.constraint(equalTo: Quote.bottomAnchor, constant: 20),
+            
             // Set Author constraint to view right by 30
-            NSLayoutConstraint(item: Author, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: -30),
-//            ChangeQuote.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
-            NSLayoutConstraint(item: ChangeQuote, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottomMargin, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: ChangeQuote, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 20),
-            NSLayoutConstraint(item: ChangeQuote, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: -20),
-            NSLayoutConstraint(item: ChangeQuote, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -20),
+            Author.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20),
+            
+            // Set ChangeQuote Button constraint
+            ChangeQuote.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            ChangeQuote.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20),
+            ChangeQuote.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20)
         ])
     }
 
